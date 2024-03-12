@@ -36,7 +36,11 @@ export async function getUserById(userId: string) {
   try {
     //await connectToDatabase();
 
-    const user = await prisma.users.findFirst( {where:{ clerkId: userId }});
+    const user = await prisma.users.findFirst({
+      where:{ 
+        clerkId: userId 
+      }
+    });
 
     if (!user) throw new Error("User not found");
 
@@ -46,62 +50,62 @@ export async function getUserById(userId: string) {
   }
 }
 
-// UPDATE
-export async function updateUser(clerkId: string, user: UpdateUserParams) {
-  try {
-    //await connectToDatabase();
+// // UPDATE
+// export async function updateUser(clerkId: string, user: UpdateUserParams) {
+//   try {
+//     //await connectToDatabase();
 
-    const updatedUser = await prisma.users.update({
-      where:{
-        clerkId:clerkId
-      },data:{user}
-    });
+//     const updatedUser = await prisma.users.update({
+//       where:{
+//         clerkId:clerkId
+//       },data:{user}
+//     });
 
-    if (!updatedUser) throw new Error("User update failed");
+//     if (!updatedUser) throw new Error("User update failed");
     
-    return JSON.parse(JSON.stringify(updatedUser));
-  } catch (error) {
-    handleError(error);
-  }
-}
+//     return JSON.parse(JSON.stringify(updatedUser));
+//   } catch (error) {
+//     handleError(error);
+//   }
+// }
 
-// DELETE
-export async function deleteUser(clerkId: string) {
-  try {
-    //await connectToDatabase();
+// // DELETE
+// export async function deleteUser(clerkId: string) {
+//   try {
+//     //await connectToDatabase();
 
-    // Find user to delete
-    const userToDelete = await prisma.users.findOne({ clerkId });
+//     // Find user to delete
+//     const userToDelete = await prisma.users.findOne({ clerkId });
 
-    if (!userToDelete) {
-      throw new Error("User not found");
-    }
+//     if (!userToDelete) {
+//       throw new Error("User not found");
+//     }
 
-    // Delete user
-    const deletedUser = await prisma.users.destroy(userToDelete._id);
-    revalidatePath("/");
+//     // Delete user
+//     const deletedUser = await prisma.users.destroy(userToDelete._id);
+//     revalidatePath("/");
 
-    return deletedUser ? JSON.parse(JSON.stringify(deletedUser)) : null;
-  } catch (error) {
-    handleError(error);
-  }
-}
+//     return deletedUser ? JSON.parse(JSON.stringify(deletedUser)) : null;
+//   } catch (error) {
+//     handleError(error);
+//   }
+// }
 
-// USE CREDITS
-export async function updateCredits(userId: string, creditFee: number) {
-  try {
-    //await connectToDatabase();
+// // USE CREDITS
+// export async function updateCredits(userId: string, creditFee: number) {
+//   try {
+//     //await connectToDatabase();
 
-    // const updatedUserCredits = await User.findOneAndUpdate(
-    //   { _id: userId },
-    //   { $inc: { creditBalance: creditFee }},
-    //   { new: true }
-    // )
+//     // const updatedUserCredits = await User.findOneAndUpdate(
+//     //   { _id: userId },
+//     //   { $inc: { creditBalance: creditFee }},
+//     //   { new: true }
+//     // )
 
-    // if(!updatedUserCredits) throw new Error("User credits update failed");
+//     // if(!updatedUserCredits) throw new Error("User credits update failed");
 
-    //return JSON.parse(JSON.stringify(updatedUserCredits));
-  } catch (error) {
-    handleError(error);
-  }
-}
+//     //return JSON.parse(JSON.stringify(updatedUserCredits));
+//   } catch (error) {
+//     handleError(error);
+//   }
+// }
