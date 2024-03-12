@@ -1,7 +1,7 @@
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
-import User from "../../../lib/database/models/user.model";
-import { connectToDatabase } from "../../../lib/database/mongoose";
+import User from "../../../lib/database_old/models/user.model";
+import { connectToDatabase } from "../../../lib/database_old/mongoose";
 
 
 export async function GET(rep:Request) {

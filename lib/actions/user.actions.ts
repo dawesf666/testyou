@@ -1,18 +1,29 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import prisma from "../prisma";
 
-import User from "../database/models/user.model";
-import { connectToDatabase } from "../database/mongoose";
+// import User from "../database_old/models/user.model";
+// import { connectToDatabase } from "../database_old/mongoose";
 import { handleError } from "../utils";
 
 // CREATE
 export async function createUser(user: CreateUserParams) {
   try {
     console.log("AJUNGE AICI???")
-    await connectToDatabase();
+    //await connectToDatabase();
 
-    const newUser = await User.create(user);
+    // const newUser = await prisma.Users.create(user);
+    const newUser = await prisma.users.create({
+      clerkId:user.clerkId,
+      email:user.email,
+      username:user.username,
+      photo:user.photo,
+      firstName:user.firstName,
+      lastName:user.lastName,
+      //planId:user.planId,
+      //creditBalance:user.cred
+    })
 
     return JSON.parse(JSON.stringify(newUser));
   } catch (error) {
@@ -23,9 +34,9 @@ export async function createUser(user: CreateUserParams) {
 // READ
 export async function getUserById(userId: string) {
   try {
-    await connectToDatabase();
+    //await connectToDatabase();
 
-    const user = await User.findOne({ clerkId: userId });
+    const user = await prisma.users.findFirst( {where:{ clerkId: userId }});
 
     if (!user) throw new Error("User not found");
 
@@ -38,10 +49,12 @@ export async function getUserById(userId: string) {
 // UPDATE
 export async function updateUser(clerkId: string, user: UpdateUserParams) {
   try {
-    await connectToDatabase();
+    //await connectToDatabase();
 
-    const updatedUser = await User.findOneAndUpdate({ clerkId }, user, {
-      new: true,
+    const updatedUser = await prisma.users.update({
+      where:{
+        clerkId:clerkId
+      },data:{user}
     });
 
     if (!updatedUser) throw new Error("User update failed");
@@ -55,17 +68,17 @@ export async function updateUser(clerkId: string, user: UpdateUserParams) {
 // DELETE
 export async function deleteUser(clerkId: string) {
   try {
-    await connectToDatabase();
+    //await connectToDatabase();
 
     // Find user to delete
-    const userToDelete = await User.findOne({ clerkId });
+    const userToDelete = await prisma.users.findOne({ clerkId });
 
     if (!userToDelete) {
       throw new Error("User not found");
     }
 
     // Delete user
-    const deletedUser = await User.findByIdAndDelete(userToDelete._id);
+    const deletedUser = await prisma.users.destroy(userToDelete._id);
     revalidatePath("/");
 
     return deletedUser ? JSON.parse(JSON.stringify(deletedUser)) : null;
@@ -77,17 +90,17 @@ export async function deleteUser(clerkId: string) {
 // USE CREDITS
 export async function updateCredits(userId: string, creditFee: number) {
   try {
-    await connectToDatabase();
+    //await connectToDatabase();
 
-    const updatedUserCredits = await User.findOneAndUpdate(
-      { _id: userId },
-      { $inc: { creditBalance: creditFee }},
-      { new: true }
-    )
+    // const updatedUserCredits = await User.findOneAndUpdate(
+    //   { _id: userId },
+    //   { $inc: { creditBalance: creditFee }},
+    //   { new: true }
+    // )
 
-    if(!updatedUserCredits) throw new Error("User credits update failed");
+    // if(!updatedUserCredits) throw new Error("User credits update failed");
 
-    return JSON.parse(JSON.stringify(updatedUserCredits));
+    //return JSON.parse(JSON.stringify(updatedUserCredits));
   } catch (error) {
     handleError(error);
   }
