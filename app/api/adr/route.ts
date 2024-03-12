@@ -12,7 +12,7 @@ export async function GET(rep:Request) {
         console.log("ALL USERS",users)
         return NextResponse.json({ message: "OK", users: users });
     } catch (error) {
-        
+        return NextResponse.json({ message: "KO", users: error });
     }
     
 
