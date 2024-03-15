@@ -2,15 +2,15 @@
 
 import { revalidatePath } from "next/cache";
 import prisma from "../prisma";
-export const dynamic = "force-dynamic";
+//export const dynamic = "force-dynamic";
 // import User from "../database_old/models/user.model";
 // import { connectToDatabase } from "../database_old/mongoose";
 import { handleError } from "../utils";
 
 // CREATE
-export async function createUser(user:any) {
+export async function createUser(user:CreateUserParams) {
   try {
-    console.log("AJUNGE AICI???",prisma.users)
+    //console.log("AJUNGE AICI???",prisma.users)
     //await connectToDatabase();
 
     // const newUser = await prisma.Users.create(user);
