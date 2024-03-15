@@ -9,9 +9,9 @@ datasource db {
 
 model Users {
   idUser        Int     @id @default(autoincrement())
-  clerkId       String  @unique(map: "clerkId_UNIQUE") @db.VarChar(100)
-  email         String  @unique(map: "email_UNIQUE") @db.VarChar(100)
-  username      String  @unique(map: "username_UNIQUE") @db.VarChar(100)
+  clerkId       String  @db.VarChar(100)
+  email         String  @db.VarChar(100)
+  username      String  @db.VarChar(100)
   photo         String? @db.Text
   firstName     String? @db.Text
   lastName      String? @db.Text

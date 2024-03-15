@@ -8,19 +8,22 @@ import prisma from "../prisma";
 import { handleError } from "../utils";
 
 // CREATE
-export async function createUser(user: CreateUserParams) {
+export async function createUser(user:any) {
   try {
-    console.log("AJUNGE AICI???")
+    console.log("AJUNGE AICI???",prisma.users)
     //await connectToDatabase();
 
     // const newUser = await prisma.Users.create(user);
     const newUser = await prisma.users.create({
-      clerkId:user.clerkId,
-      email:user.email,
-      username:user.username,
-      photo:user.photo,
-      firstName:user.firstName,
-      lastName:user.lastName,
+      data:{
+        clerkId:user.clerkId,
+        email:user.email,
+        username:user.username,
+        photo:user.photo,
+        firstName:user.firstName,
+        lastName:user.lastName,
+      }
+ 
       //planId:user.planId,
       //creditBalance:user.cred
     })

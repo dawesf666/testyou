@@ -119,6 +119,7 @@ export async function POST(req: Request) {
     //     return NextResponse.json({ message: "OK", user: deletedUser });
     // }
 
+    //cra
     console.log(`Webhook with and ID of ${id} and type of ${eventType}`);
     console.log("Webhook body:", body);
 
