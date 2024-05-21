@@ -1,0 +1,28 @@
+[
+    {
+        "idMatContent": 197019,
+        "bigQuestion": null,
+        "question": "Zacharias Janssen inventò, nel 1595, …",
+        "url_question": "",
+        "answers": "[{\"ans\":\"la pila elettrica\",\"url\":\"\"},{\"ans\":\"il microscopio composto\",\"url\":\"\"},{\"ans\":\"l'orologio da tasca\",\"url\":\"\"},{\"ans\":\"il parafulmine\",\"url\":\"\"}]",
+        "answerOk": "B",
+        "which_file": "A",
+        "argument": "Altro",
+        "uploaded_date": "2023-01-25 11:38:02",
+        "Courses_has_Subjects_Courses_idCourse": 63,
+        "Courses_has_Subjects_Subjects_idSubject": 12
+    },
+    {
+        "idMatContent": 197019,
+        "bigQuestion": null,
+        "question": "Zacharias Janssen inventò, nel 1595, …",
+        "url_question": "",
+        "answers": "[{\"ans\":\"la pila elettrica\",\"url\":\"\"},{\"ans\":\"il microscopio composto\",\"url\":\"\"},{\"ans\":\"l'orologio da tasca\",\"url\":\"\"},{\"ans\":\"il parafulmine\",\"url\":\"\"}]",
+        "answerOk": "B",
+        "which_file": "A",
+        "argument": "Altro",
+        "uploaded_date": "2023-01-25 11:38:02",
+        "Courses_has_Subjects_Courses_idCourse": 63,
+        "Courses_has_Subjects_Subjects_idSubject": 12
+    }
+]

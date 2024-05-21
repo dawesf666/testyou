@@ -153,3 +153,17 @@ export const deepMergeObjects = (obj1: any, obj2: any) => {
 
   return output;
 };
+
+
+
+export const renderDate = (date: string | null) => {
+  if (date !== null) {
+      return `
+      ${new Date(date).getDate()}/${new Date(date).getMonth() + 1}/${new Date(
+          date
+      ).getFullYear()} ${new Date(date).getHours()}:${new Date(
+          date
+      ).getMinutes()}`;
+  }
+  return "";
+};

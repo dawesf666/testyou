@@ -7,59 +7,57 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
+import clsx from "clsx";
 
 const MobileNav = () => {
     const pathname = usePathname();
 
     return (
-        <header className="header">
-            <Link href="/dashboard" className="flex items-center gap-2 md:py-2">
-                <Image
-                    src="/assets/images/logo-text.svg"
-                    alt="logo"
-                    width={180}
-                    height={28}
-                />
-            </Link>
+        <header className="flex-between fixed h-16 w-full border-b-4 lg:hidden overflow-hidden">
+            <nav className="dark:bg-black bg-white h-screen overflow-scroll justify-between md:flex items-center flex-col gap-10 ">
+                <div className="flex justify-end p-3">
+                    <SignedIn>
+                        <UserButton afterSignOutUrl="/" />
 
-            <nav className="flex gap-2">
-                <SignedIn>
-                    <UserButton afterSignOutUrl="/" />
-
-                    <Sheet>
-                        <SheetTrigger>
-                            <Image
-                                src="/assets/icons/menu.svg"
-                                alt="menu"
-                                width={32}
-                                height={32}
-                                className="cursor-pointer"
-                            />
-                        </SheetTrigger>
-                        <SheetContent className="sheet-content sm:w-64">
-                            <>
+                        <Sheet>
+                            <SheetTrigger>
                                 <Image
-                                    src="/assets/images/logo-text.svg"
-                                    alt="logo"
-                                    width={152}
-                                    height={23}
+                                    src="/assets/icons/menu.svg"
+                                    alt="menu"
+                                    width={32}
+                                    height={32}
+                                    className="cursor-pointer"
                                 />
+                            </SheetTrigger>
+                            <SheetContent className="sheet-content sm:w-64">
+                                <>
+                                    {/* <Image
+                                        src="/assets/images/logo-text.svg"
+                                        alt="logo"
+                                        width={152}
+                                        height={23}
+                                    /> */}
 
-                                <ul className="header-nav_elements">
-                                    {navLinks.map((link) => {
-                                        const isActive =
-                                            link.route === pathname;
-
-                                        return (
+                                    {navLinks.map((link) => (
+                                        <ul
+                                            className="mt-3 w-full"
+                                            key={link.label}
+                                        >
                                             <li
-                                                className={`${
-                                                    isActive && "gradient-text"
-                                                } p-18 flex whitespace-nowrap text-dark-700`}
+                                                className={clsx(
+                                                    "w-full flex rounded-full scale-[1.2] cursor-pointer",
+                                                    {
+                                                        "dark:bg-[#2F006B] bg-[#EEE0FF] ":
+                                                            pathname ===
+                                                            link.route,
+                                                    }
+                                                )}
                                                 key={link.route}
                                             >
                                                 <Link
-                                                    className="sidebar-link cursor-pointer"
+                                                    //className="sidebar-link cursor-pointer"
                                                     href={link.route}
+                                                    className="flex w-full items-start gap-5 p-3"
                                                 >
                                                     <Image
                                                         src={link.icon}
@@ -67,25 +65,25 @@ const MobileNav = () => {
                                                         width={24}
                                                         height={24}
                                                     />
-                                                    {link.label}
+                                                    <p> {link.label}</p>
                                                 </Link>
                                             </li>
-                                        );
-                                    })}
-                                </ul>
-                            </>
-                        </SheetContent>
-                    </Sheet>
-                </SignedIn>
+                                        </ul>
+                                    ))}
+                                </>
+                            </SheetContent>
+                        </Sheet>
+                    </SignedIn>
 
-                <SignedOut>
-                    <Button
-                        asChild
-                        className="button bg-purple-gradient bg-cover"
-                    >
-                        <Link href="/sign-in">Login</Link>
-                    </Button>
-                </SignedOut>
+                    <SignedOut>
+                        <Button
+                            asChild
+                            className="button bg-purple-gradient bg-cover"
+                        >
+                            <Link href="/sign-in">Login</Link>
+                        </Button>
+                    </SignedOut>
+                </div>
             </nav>
         </header>
     );

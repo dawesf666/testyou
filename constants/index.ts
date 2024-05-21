@@ -5,37 +5,62 @@ export const navLinks = [
       icon: "/assets/icons/home.svg",
     },
     {
-      label: "Image Restore",
-      route: "/transformations/add/restore",
-      icon: "/assets/icons/image.svg",
+      label: "Argomenti",
+      route: "/arguments",
+      icon: "/assets/icons/home.svg",
     },
     {
-      label: "Generative Fill",
-      route: "/transformations/add/fill",
-      icon: "/assets/icons/stars.svg",
+      label: "Materie",
+      route: "/subjects",
+      icon: "/assets/icons/home.svg",
     },
     {
-      label: "Object Remove",
-      route: "/transformations/add/remove",
-      icon: "/assets/icons/scan.svg",
+      label: "Traduzioni",
+      route: "/translates",
+      icon: "/assets/icons/home.svg",
     },
     {
-      label: "Object Recolor",
-      route: "/transformations/add/recolor",
-      icon: "/assets/icons/filter.svg",
+      label: "Riassunti",
+      route: "/summaries",
+      icon: "/assets/icons/home.svg",
     },
     {
-      label: "Background Remove",
-      route: "/transformations/add/removeBackground",
-      icon: "/assets/icons/camera.svg",
+      label: "Corsi",
+      route: "/courses",
+      icon: "/assets/icons/home.svg",
     },
+    // {
+    //   label: "Image Restore",
+    //   route: "/transformations/add/restore",
+    //   icon: "/assets/icons/image.svg",
+    // },
+    // {
+    //   label: "Generative Fill",
+    //   route: "/transformations/add/fill",
+    //   icon: "/assets/icons/stars.svg",
+    // },
+    // {
+    //   label: "Object Remove",
+    //   route: "/transformations/add/remove",
+    //   icon: "/assets/icons/scan.svg",
+    // },
+    // {
+    //   label: "Object Recolor",
+    //   route: "/transformations/add/recolor",
+    //   icon: "/assets/icons/filter.svg",
+    // },
+    // {
+    //   label: "Background Remove",
+    //   route: "/transformations/add/removeBackground",
+    //   icon: "/assets/icons/camera.svg",
+    // },
     {
-      label: "Profile",
+      label: "Profilo",
       route: "/profile",
       icon: "/assets/icons/profile.svg",
     },
     {
-      label: "Buy Credits",
+      label: "Negozio",
       route: "/credits",
       icon: "/assets/icons/bag.svg",
     },
@@ -47,10 +72,10 @@ export const navLinks = [
       name: "Free",
       icon: "/assets/icons/free-plan.svg",
       price: 0,
-      credits: 20,
+      credits: 5,
       inclusions: [
         {
-          label: "20 Free Credits",
+          label: "5 Free Credits",
           isIncluded: true,
         },
         {
@@ -71,11 +96,11 @@ export const navLinks = [
       _id: 2,
       name: "Pro Package",
       icon: "/assets/icons/free-plan.svg",
-      price: 40,
-      credits: 120,
+      price: 5,
+      credits: 30,
       inclusions: [
         {
-          label: "120 Credits",
+          label: "30 Credits",
           isIncluded: true,
         },
         {
@@ -96,11 +121,61 @@ export const navLinks = [
       _id: 3,
       name: "Premium Package",
       icon: "/assets/icons/free-plan.svg",
-      price: 199,
-      credits: 2000,
+      price: 15,
+      credits: 150,
       inclusions: [
         {
-          label: "2000 Credits",
+          label: "150 Credits",
+          isIncluded: true,
+        },
+        {
+          label: "Full Access to Services",
+          isIncluded: true,
+        },
+        {
+          label: "Priority Customer Support",
+          isIncluded: true,
+        },
+        {
+          label: "Priority Updates",
+          isIncluded: true,
+        },
+      ],
+    },
+    {
+      _id: 4,
+      name: "Gold Package",
+      icon: "/assets/icons/free-plan.svg",
+      price: 30,
+      credits: 400,
+      inclusions: [
+        {
+          label: "400 Credits",
+          isIncluded: true,
+        },
+        {
+          label: "Full Access to Services",
+          isIncluded: true,
+        },
+        {
+          label: "Priority Customer Support",
+          isIncluded: true,
+        },
+        {
+          label: "Priority Updates",
+          isIncluded: true,
+        },
+      ],
+    },
+    {
+      _id: 4,
+      name: "Platinum Package",
+      icon: "/assets/icons/free-plan.svg",
+      price: 50,
+      credits: 1000,
+      inclusions: [
+        {
+          label: "1000 Credits",
           isIncluded: true,
         },
         {
@@ -189,5 +264,37 @@ export const navLinks = [
     prompt: "",
     publicId: "",
   };
+  export const letters = [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "X",
+    "Y",
+    "W",
+    "Z",
+];
   
   export const creditFee = -1;
+
+  export const clients = [...new Array(10)].map((client, index) => ({
+    href: `/${index + 1}.png`,
+  }))

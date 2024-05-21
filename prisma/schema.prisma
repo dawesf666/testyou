@@ -8,13 +8,90 @@ datasource db {
 }
 
 model Users {
-  idUser        Int     @id @default(autoincrement())
-  clerkId       String  @db.VarChar(100)
-  email         String  @db.VarChar(100)
-  username      String  @db.VarChar(100)
-  photo         String? @db.Text
-  firstName     String? @db.Text
-  lastName      String? @db.Text
+  idUser        Int             @id @default(autoincrement())
+  clerkId       String          @unique(map: "clerkId_UNIQUE") @db.VarChar(100)
+  email         String          @unique(map: "email_UNIQUE") @db.VarChar(100)
+  username      String          @unique(map: "username_UNIQUE") @db.VarChar(100)
+  photo         String?         @db.Text
+  firstName     String?         @db.Text
+  lastName      String?         @db.Text
   planId        Int?
   creditBalance Int?
+  ExercisesDone ExercisesDone[]
+  Transactions  Transactions[]
+}
+
+model Courses {
+  idCourses     Int             @id @default(autoincrement())
+  name          String?         @db.Text
+  title         String?         @db.Text
+  desc          String?         @db.Text
+  code          String?         @db.Text
+  img           String?         @db.Text
+  visible       Int?            @db.TinyInt
+  ExercisesDone ExercisesDone[]
+  MatContents   MatContents[]
+}
+
+model Subjects {
+  idSubjects    Int             @id @default(autoincrement())
+  name          String?         @db.Text
+  title         String?         @db.Text
+  desc          String?         @db.Text
+  code          String?         @db.Text
+  img           String?         @db.Text
+  visible       Int?            @db.TinyInt
+  ExercisesDone ExercisesDone[]
+  MatContents   MatContents[]
+}
+
+model Transactions {
+  idTransactions Int      @id @default(autoincrement())
+  createdAt      DateTime @db.Date
+  stripeId       String   @unique(map: "stripeId_UNIQUE") @db.VarChar(100)
+  amount         Int?
+  plan           String?  @db.Text
+  credits        Int?
+  buyer          Int?
+  Users          Users?   @relation(fields: [buyer], references: [idUser], onDelete: NoAction, onUpdate: NoAction, map: "buyerId")
+
+  @@index([buyer], map: "buyerId_idx")
+}
+
+model MatContents {
+  idMatContent Int      @id @default(autoincrement())
+  bigQuestion  String?  @db.MediumText
+  question     String?  @db.MediumText
+  urlQuestion  String?  @db.MediumText
+  answers      String?  @db.MediumText
+  answerOk     String?  @db.MediumText
+  explanation  String?  @db.MediumText
+  difficult    String?  @db.MediumText
+  argument     String?  @db.MediumText
+  idCourse     Int
+  idSubject    Int
+  Courses      Courses  @relation(fields: [idCourse], references: [idCourses], onDelete: Cascade, map: "course")
+  Subjects     Subjects @relation(fields: [idSubject], references: [idSubjects], onDelete: Cascade, map: "subject")
+
+  @@index([idCourse], map: "course_idx")
+  @@index([idSubject], map: "subject_idx")
+}
+
+model ExercisesDone {
+  idExercisesDone Int       @id @default(autoincrement())
+  questions       String?   @db.Text
+  answers         String?   @db.Text
+  argument        String?   @db.Text
+  score           Int?
+  date            DateTime? @db.DateTime(0)
+  userId          Int?
+  courseId        Int?
+  subjectId       Int?
+  Courses         Courses?  @relation(fields: [courseId], references: [idCourses], onDelete: NoAction, onUpdate: NoAction, map: "courseId")
+  Subjects        Subjects? @relation(fields: [subjectId], references: [idSubjects], onDelete: NoAction, onUpdate: NoAction, map: "subjectId")
+  Users           Users?    @relation(fields: [userId], references: [idUser], onDelete: NoAction, onUpdate: NoAction, map: "userId")
+
+  @@index([courseId], map: "courseId_idx")
+  @@index([subjectId], map: "subjectId_idx")
+  @@index([userId], map: "userId_idx")
 }

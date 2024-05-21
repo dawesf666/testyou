@@ -76,7 +76,7 @@ declare type CreateUserParams = {
     plan: string;
     credits: number;
     amount: number;
-    buyerId: string;
+    buyerId: number;
   };
   
   declare type CreateTransactionParams = {
@@ -84,7 +84,7 @@ declare type CreateUserParams = {
     amount: number;
     credits: number;
     plan: string;
-    buyerId: string;
+    buyerId: number;
     createdAt: Date;
   };
   
@@ -136,3 +136,49 @@ declare type CreateUserParams = {
     hasDownload?: boolean;
     setIsTransforming?: React.Dispatch<React.SetStateAction<boolean>>;
   };
+
+
+
+//COURSES
+declare type Course = {
+  idCourses:number;
+  name : string;
+  title :string;
+  desc:  string ;
+  code : string; 
+  img  : string; 
+  visible:boolean;
+}
+
+//QUESTIONS
+
+declare type MatContents ={
+  idMatContent:number; 
+  bigQuestion:string|null;
+  question:string|null; 
+  urlQuestion:string|null;  
+  answers:string|null;  
+  answerOk:string|null;  
+  explanation:string|null;  
+  difficult:string|null;  
+  argument:string;  
+  idCourse:number; 
+  idSubject:number
+}
+
+
+//SUBJECTS
+declare type Subject = {
+  idSubjects:number|null;
+  name : string|null;
+  title :string|null;
+  desc:  string|null ;
+  code : string|null; 
+  img  : string;
+  MatContents:MatContents[]|null; 
+  visible:int|null;
+  ExercisesDone:any|null
+  allQuestions:int|null;
+}
+
+
